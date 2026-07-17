@@ -1,0 +1,8 @@
+name = "debufftimer-contact"
+main = "src/index.js"
+compatibility_date = "2026-07-01"
+
+# シークレット (wrangler secret put で登録、コードには置かない):
+#   RESEND_API_KEY   — Resend の API キー
+#   TURNSTILE_SECRET — Turnstile ウィジェットのシークレットキー
+#   CONTACT_TO       — 問い合わせの届け先メールアドレス (Resend 登録アドレスと同一にすること)

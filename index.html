@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="DebuffTimer のサポートページ。よくある質問と、開発者への問い合わせ窓口。">
+<title>DebuffTimer — サポート</title>
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="alternate" hreflang="ja" href="https://kizzz9.github.io/debufftimer-support/">
+<link rel="alternate" hreflang="en" href="https://kizzz9.github.io/debufftimer-support/en/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ダークが正。夜に開くアプリのサイトなので、明るいのは例外側に置く */
+:root {
+  color-scheme: dark;
+  --bg: #0D0D0D; --surface: #1A1A1A; --well: #141414; --line: #2A2A2A;
+  --ink: #F3F4F6; --muted: #9CA3AF; --faint: #6B7280;
+  --accent: #D5A62E; --accent-weak: rgba(213,166,46,.45); --accent-soft: rgba(213,166,46,.10);
+  --accent-contrast: #0D0D0D;
+  --safe: #22C55E; --caution: #D5A62E; --danger: #EF5350; --critical: #A58AC6;
+  --hairline: rgba(255,255,255,.12);
+  --num: "Chakra Petch", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --bg: #F5F5F0; --surface: #FFFFFF; --well: #EDEDE6; --line: #E0E0D8;
+    --ink: #1F2937; --muted: #6B7280; --faint: #9CA3AF;
+    --accent: #96700F; --accent-weak: rgba(150,112,15,.45); --accent-soft: rgba(150,112,15,.08);
+    --accent-contrast: #FFFFFF;
+    --safe: #15803D; --caution: #96700F; --danger: #D32F2F; --critical: #7E62A8;
+    --hairline: rgba(31,41,55,.14);
+  }
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Segoe UI", sans-serif;
+  line-height: 1.75; font-size: 16px; -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); }
+.n { font-family: var(--num); font-weight: 600; }
+.container { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+/* ─ サイトナビ ─ */
+.site-nav {
+  background: var(--bg); border-bottom: 1px solid var(--line);
+  padding: 0 24px; display: flex; align-items: stretch;
+  font-size: .88em; position: sticky; top: 0; z-index: 100;
+}
+.site-nav .brand {
+  display: flex; align-items: center; gap: 9px; font-weight: 700;
+  text-decoration: none; color: var(--ink); padding: 10px 0; margin-right: 24px;
+}
+.site-nav .brand img { width: 22px; height: 22px; border-radius: 5px; }
+.site-nav a.nav-link {
+  text-decoration: none; color: var(--muted); font-weight: 500;
+  padding: 10px 14px; border-bottom: 2px solid transparent;
+}
+.site-nav a.nav-link:hover { color: var(--ink); }
+.site-nav a.nav-link.active { color: var(--accent); font-weight: 700; border-bottom-color: var(--accent); }
+
+/* ─ ヒーロー: 常にダーク（時間帯の側がアプリの世界） ─ */
+.hero { background: #0D0D0D; color: #F3F4F6; position: relative; overflow: hidden; padding: 72px 24px 64px; }
+.hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 90% 100% at 60% 0%, #000 25%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 100% at 60% 0%, #000 25%, transparent 75%);
+}
+.hero > * { position: relative; }
+.hero-grid {
+  max-width: 1020px; margin: 0 auto; display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  gap: 52px; align-items: center;
+}
+.hero-brand { display: flex; align-items: center; gap: 13px; margin-bottom: 24px; }
+.hero-brand img { width: 52px; height: 52px; border-radius: 12px; border: 1px solid rgba(255,255,255,.14); }
+.hero-brand .wordmark { font-weight: 800; font-size: 1.25em; letter-spacing: -.01em; }
+.hero h1 { font-size: 2.4em; font-weight: 800; letter-spacing: -.02em; line-height: 1.25; margin-bottom: 12px; }
+.hero p.lede { font-size: 1.05em; color: #9CA3AF; margin-bottom: 18px; }
+.meta-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 30px; }
+.meta-pills span {
+  font-size: .78em; color: #9CA3AF; border: 1px solid rgba(255,255,255,.16);
+  border-radius: 6px; padding: 3px 12px;
+}
+.meta-pills .n { font-size: 1em; color: #D5A62E; font-weight: 600; }
+
+/* ヨイの案内（声には体を） */
+.yoi-intro { display: flex; align-items: flex-end; gap: 14px; }
+.yoi-intro img { width: 104px; height: 104px; flex-shrink: 0; }
+.yoi-intro .bubble {
+  background: rgba(26,26,26,.85); border: 1px solid rgba(255,255,255,.14);
+  border-radius: 10px; padding: 13px 17px; font-size: .93em; line-height: 1.8;
+}
+.yoi-intro .who, .a.yoi .who {
+  font-family: var(--num); font-weight: 500; font-size: .72em; letter-spacing: .18em;
+  color: #D5A62E; display: block; margin-bottom: 3px;
+}
+
+/* 言語スイッチャー */
+.langs { position: absolute; top: 18px; right: 20px; display: flex; gap: 6px; }
+.langs a, .langs b {
+  font-family: var(--num); font-size: .72em; font-weight: 500; text-decoration: none;
+  padding: 4px 12px; border-radius: 6px; border: 1px solid transparent;
+}
+.langs a { color: #9CA3AF; }
+.langs a:hover { color: #F3F4F6; border-color: rgba(255,255,255,.25); }
+.langs b { color: #0D0D0D; background: #D5A62E; }
+
+/* ─ 脳内OSパネル（アプリのダッシュボードをCSSで再現） ─ */
+.panel {
+  background: #161616; border: 1px solid rgba(255,255,255,.14); border-radius: 12px;
+  box-shadow: 0 30px 80px rgba(0,0,0,.55); overflow: hidden;
+}
+.panel-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,.12);
+  font-family: var(--num); font-weight: 500; font-size: 11px; letter-spacing: .18em; color: #9CA3AF;
+}
+.panel-bar .live { display: flex; align-items: center; gap: 8px; }
+.panel-bar .live i {
+  width: 7px; height: 7px; border-radius: 50%; background: #EF5350;
+  animation: breathe 3.2s ease-in-out infinite;
+}
+@keyframes breathe { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .panel-bar .live i { animation: none; } }
+.panel-bar .clock { font-size: 14px; font-weight: 600; letter-spacing: .08em; color: #D5A62E; }
+.panel-body { display: flex; gap: 8px; padding: 18px 16px 10px; }
+.readout { flex: 1; min-width: 0; }
+.value-row { display: flex; align-items: baseline; gap: 8px; }
+.value-row .value { font-family: var(--num); font-weight: 700; font-size: 58px; line-height: 1; color: #EF5350; letter-spacing: .01em; }
+.value-row .cap { font-family: var(--num); font-weight: 500; font-size: 14px; color: #6B7280; }
+.value-row .state {
+  margin-left: auto; font-size: 12.5px; font-weight: 700; color: #EF5350;
+  border: 1px solid rgba(239,83,80,.5); border-radius: 4px; padding: 2px 10px; letter-spacing: .1em;
+}
+.gauge { height: 9px; background: rgba(255,255,255,.08); border-radius: 2px; margin: 14px 0 18px; position: relative; overflow: hidden; }
+.gauge i { display: block; height: 100%; background: #EF5350; }
+.gauge::after {
+  content: ""; position: absolute; inset: 0;
+  background: repeating-linear-gradient(90deg, transparent 0 11px, rgba(13,13,13,.6) 11px 12px);
+}
+.fx-head {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 8px;
+  font-family: var(--num); font-weight: 500; font-size: 10px; letter-spacing: .18em; color: #6B7280;
+}
+.fx-head .rule { flex: 1; height: 1px; background: rgba(255,255,255,.12); }
+.fx-head b { font-weight: 600; font-size: 12px; color: #9CA3AF; }
+.fx {
+  display: flex; align-items: center; gap: 9px; margin-bottom: 6px;
+  padding: 7px 11px; border-radius: 4px; font-size: 13px; color: #D1D5DB;
+}
+.fx svg { flex-shrink: 0; }
+.fx b { margin-left: auto; font-family: var(--num); font-weight: 700; font-size: 15px; }
+.fx.danger { border-left: 3px solid #EF5350; background: rgba(239,83,80,.08); }
+.fx.danger svg, .fx.danger b { color: #EF5350; }
+.fx.caution { border-left: 3px solid #D5A62E; background: rgba(213,166,46,.08); }
+.fx.caution svg, .fx.caution b { color: #D5A62E; }
+.panel-yoi { align-self: flex-end; width: 86px; height: 86px; margin-bottom: -2px; }
+.panel-foot {
+  display: flex; justify-content: space-between; gap: 12px;
+  border-top: 1px solid rgba(255,255,255,.12); padding: 9px 16px;
+  font-size: 11.5px; color: #6B7280;
+}
+.panel-foot .n { font-size: 12px; color: #9CA3AF; }
+@media (max-width: 880px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero h1 { font-size: 1.9em; }
+  .panel { max-width: 440px; }
+}
+@media (max-width: 640px) {
+  .langs { position: static; justify-content: flex-end; margin-bottom: 16px; }
+  .yoi-intro img { width: 84px; height: 84px; }
+}
+
+/* ─ 計器式セクションヘッダ（左タイトル ─ 罫線 ─ 実データ） ─ */
+.section { padding: 60px 0 8px; }
+.section:last-of-type { padding-bottom: 64px; }
+.ihead { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+.ihead h2 { font-size: 1.2em; font-weight: 700; letter-spacing: .01em; white-space: nowrap; }
+.ihead .rule { flex: 1; height: 1px; background: var(--hairline); }
+.ihead .meta { font-size: .8em; color: var(--muted); white-space: nowrap; }
+.ihead .meta .n { color: var(--accent); font-size: 1.1em; }
+.section p.sub { color: var(--muted); font-size: .93em; margin-bottom: 28px; }
+
+/* ─ FAQ ─ */
+details {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: 0 20px; margin-bottom: 10px;
+}
+details[open] { border-color: var(--accent-weak); }
+summary {
+  cursor: pointer; font-weight: 700; font-size: .96em; padding: 16px 0; list-style: none;
+  display: flex; align-items: baseline; gap: 12px;
+}
+summary::-webkit-details-marker { display: none; }
+summary .qn { font-family: var(--num); font-weight: 600; font-size: .78em; color: var(--accent); min-width: 36px; }
+summary .chev { margin-left: auto; color: var(--faint); font-size: .8em; transition: transform .2s; }
+details[open] summary .chev { transform: rotate(90deg); }
+.a { padding: 0 0 18px 48px; font-size: .93em; }
+.a.plain { color: var(--muted); }
+.a.plain a { font-weight: 600; }
+.a.yoi { display: flex; align-items: flex-start; gap: 13px; padding-left: 40px; }
+.a.yoi img { width: 56px; height: 56px; flex-shrink: 0; }
+.a.yoi .bubble {
+  background: var(--well); border: 1px solid var(--line); border-radius: 10px;
+  padding: 11px 15px; line-height: 1.8;
+}
+@media (max-width: 560px) { .a { padding-left: 0; } .a.yoi { padding-left: 0; } }
+
+/* ─ お問い合わせ ─ */
+.contact-yoi { display: flex; align-items: flex-end; gap: 13px; margin-bottom: 20px; }
+.contact-yoi img { width: 76px; height: 76px; flex-shrink: 0; }
+.contact-yoi .bubble {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: 12px 16px; font-size: .93em; line-height: 1.8;
+}
+.contact-yoi .who {
+  font-family: var(--num); font-weight: 500; font-size: .72em; letter-spacing: .18em;
+  color: var(--accent); display: block; margin-bottom: 3px;
+}
+.form-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 26px; }
+.field { margin-bottom: 15px; }
+.field label { display: block; font-size: .82em; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
+.field .req { color: var(--accent); margin-left: 8px; font-family: var(--num); font-size: .72em; letter-spacing: .08em; }
+.field input, .field textarea {
+  width: 100%; background: var(--bg); border: 1px solid var(--line);
+  border-radius: 8px; padding: 11px 13px; font: inherit; font-size: .95em; color: var(--ink);
+}
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.field textarea { min-height: 150px; resize: vertical; }
+.hp { position: absolute; left: -5000px; width: 1px; height: 1px; opacity: 0; }
+.submit {
+  display: inline-block; background: var(--accent); color: var(--accent-contrast);
+  border: none; border-radius: 8px; padding: 12px 30px;
+  font: inherit; font-size: .95em; font-weight: 700; cursor: pointer;
+}
+.submit:hover { filter: brightness(1.08); }
+.submit:disabled { opacity: .55; cursor: default; }
+.form-status { display: inline-block; margin-left: 14px; font-size: .9em; color: var(--accent); }
+.form-status.err { color: var(--danger); }
+.form-note { margin-top: 16px; font-size: .85em; color: var(--muted); }
+.cf-turnstile { margin-top: 4px; }
+
+/* ─ フッター ─ */
+footer { border-top: 1px solid var(--line); padding: 32px 24px; text-align: center; color: var(--muted); font-size: .85em; }
+footer nav { margin-bottom: 8px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+footer a { text-decoration: none; font-weight: 500; }
+footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <a class="brand" href="./"><img src="icon.png" alt="">DebuffTimer</a>
+  <a href="./" class="nav-link active">サポート</a>
+  <a href="https://kizzz9.github.io/debufftimer-privacy-policy/" class="nav-link">プライバシーポリシー</a>
+</nav>
+
+<header class="hero">
+<div class="langs"><b>日本語</b><a href="en/">English</a></div>
+<div class="hero-grid">
+<div>
+  <div class="hero-brand"><img src="icon.png" alt="DebuffTimer"><span class="wordmark">DebuffTimer</span></div>
+  <h1>サポート</h1>
+  <p class="lede">よくある質問と、開発者への問い合わせ窓口。</p>
+  <div class="meta-pills"><span><span class="n">iOS 18</span>+ 対応</span><span>広告なし</span><span>端末内完結</span></div>
+  <div class="yoi-intro">
+    <img src="img/yoi_greeting.png" alt="ヨイ" width="104" height="104">
+    <div class="bubble"><span class="who">YOI</span>やあ、ぼくはヨイ。きみの脳の分身だよ。たいていの疑問は、この下のFAQで片づくはず。片づかなかったら、いちばん下のフォームから開発のひとに聞いてみて。</div>
+  </div>
+</div>
+<div class="panel" aria-hidden="true">
+  <div class="panel-bar">
+    <span class="live"><i></i>BRAIN STATUS</span>
+    <span class="clock">25:47</span>
+  </div>
+  <div class="panel-body">
+    <div class="readout">
+      <div class="value-row"><span class="value">92</span><span class="cap">/150</span><span class="state">危険</span></div>
+      <div class="gauge"><i style="width:39%"></i></div>
+      <div class="fx-head"><span>STATUS EFFECTS</span><span class="rule"></span><b>2</b></div>
+      <div class="fx danger">
+        <svg viewBox="0 0 16 16" width="15" height="15" fill="none"><path d="M8 2 L14.5 13.5 H1.5 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><line x1="8" y1="7" x2="8" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="12" r=".9" fill="currentColor"/></svg>
+        <span>連続覚醒</span><b>20.3h</b>
+      </div>
+      <div class="fx caution">
+        <svg viewBox="0 0 16 16" width="15" height="15"><path d="M13.5 10.2 A6 6 0 1 1 5.8 2.5 A5 5 0 0 0 13.5 10.2 Z" fill="currentColor"/></svg>
+        <span>睡眠負債</span><b>−6.5h</b>
+      </div>
+    </div>
+    <img class="panel-yoi" src="img/yoi_worried.png" alt="" width="86" height="86">
+  </div>
+  <div class="panel-foot"><span>酔い換算 <span class="n">BAC 0.07%</span> 相当</span><span>起床 <span class="n">05:30</span></span></div>
+</div>
+</div>
+</header>
+
+<main class="container">
+<section class="section" id="faq">
+  <div class="ihead"><h2>よくある質問</h2><span class="rule"></span><span class="meta">全 <span class="n">10</span> 問</span></div>
+  <p class="sub">仕組みの説明はヨイが、料金や権限のことは運営が答えます。</p>
+
+  <details>
+    <summary><span class="qn">Q01</span>デバフ値ってなに？<span class="chev">▸</span></summary>
+    <div class="a yoi">
+      <img src="img/yoi_thinking.png" alt="" width="56" height="56">
+      <div class="bubble"><span class="who">YOI</span>起きてる時間を、酔いに換算した数字だよ。0から150。人は17時間起き続けると、血中アルコール0.05%と同じくらい判断が鈍る — Williamson &amp; Feyer（2000）という研究がもとになってる。数字が上がると、ぼくの見た目もだんだん悪くなっていくよ。</div>
+    </div>
+  </details>
+  <details>
+    <summary><span class="qn">Q02</span>デバフ値はどうすれば下がる？<span class="chev">▸</span></summary>
+    <div class="a yoi">
+      <img src="img/yoi_cheer.png" alt="" width="56" height="56">
+      <div class="bubble"><span class="who">YOI</span>寝るだけ。7時間眠れば全回復する。足りなければ、その分だけの部分回復（睡眠時間÷7時間）。徹夜明けの1時間の昼寝は……まあ、気休めだね。</div>
+    </div>
+  </details>
+  <details>
+    <summary><span class="qn">Q03</span>記録は自動でつく？<span class="chev">▸</span></summary>
+    <div class="a yoi">
+      <img src="img/yoi_pointing.png" alt="" width="56" height="56">
+      <div class="bubble"><span class="who">YOI</span>基本は手動。寝るときに「寝る」、起きたら「起きた」をタップしてね。ヘルスケア連携を許可すると、アプリを開いたタイミングで睡眠データを自動で取り込めるよ。連携は任意で、あとからでも設定できる。</div>
+    </div>
+  </details>
+  <details>
+    <summary><span class="qn">Q04</span>通知はどんなものが届く？<span class="chev">▸</span></summary>
+    <div class="a yoi">
+      <img src="img/yoi_bell.png" alt="" width="56" height="56">
+      <div class="bubble"><span class="who">YOI</span>夜ふかししてると、夜のうちに警告を送るよ。ちょっとうるさいけど、それが仕事なんだ。朝は結果だけ淡々と。どっちも端末の中で作られるローカル通知で、どこかのサーバーから飛んでくるわけじゃないよ。</div>
+    </div>
+  </details>
+  <details>
+    <summary><span class="qn">Q05</span>就寝シールドとは？<span class="chev">▸</span></summary>
+    <div class="a plain">就寝シールドは、指定した時間帯に選んだアプリの使用を制限する機能です。無料で利用できます。Apple のスクリーンタイムAPI（Family Controls）を使用するため、初回にスクリーンタイムの許可が必要です。選択したアプリは iOS が発行する匿名トークンとして端末内にのみ保存され、開発者がアプリ名を知ることはできません。</div>
+  </details>
+  <details>
+    <summary><span class="qn">Q06</span>無料でどこまで使える？<span class="chev">▸</span></summary>
+    <div class="a plain">寝かせるための機能はすべて無料です。デバフ値の可視化、夜の警告通知と朝の結果通知、週間起床スケジュール、特定日の上書き、就寝シールド、睡眠記録、直近7日の日別詳細、30日グラフなどの集計が含まれます。広告もありません。</div>
+  </details>
+  <details>
+    <summary><span class="qn">Q07</span>Pro では何ができる？<span class="chev">▸</span></summary>
+    <div class="a plain">¥200 の買い切りで、7日より前の日別詳細の閲覧、前月比較、通知のカスタマイズが解放されます。サブスクリプションではないため、月額や更新はありません。</div>
+  </details>
+  <details>
+    <summary><span class="qn">Q08</span>広告は表示される？<span class="chev">▸</span></summary>
+    <div class="a plain">表示されません。広告SDK・トラッキングSDKは組み込まれていません。</div>
+  </details>
+  <details>
+    <summary><span class="qn">Q09</span>データはどこに保存される？<span class="chev">▸</span></summary>
+    <div class="a plain">すべて端末内にのみ保存されます。バックエンドサーバーはなく、アカウント登録もありません。開発者がユーザーのデータにアクセスする手段はありません。詳細は<a href="https://kizzz9.github.io/debufftimer-privacy-policy/">プライバシーポリシー</a>をご覧ください。</div>
+  </details>
+  <details>
+    <summary><span class="qn">Q10</span>対応環境は？<span class="chev">▸</span></summary>
+    <div class="a plain">iOS 18.0 以降の iPhone に対応しています。</div>
+  </details>
+</section>
+
+<section class="section" id="contact">
+  <div class="ihead"><h2>お問い合わせ</h2><span class="rule"></span><span class="meta">必須 <span class="n">1</span> 項目</span></div>
+  <p class="sub">バグ報告・機能リクエスト・ご質問はこちらから。</p>
+  <div class="contact-yoi">
+    <img src="img/yoi_bell.png" alt="ヨイ" width="76" height="76">
+    <div class="bubble"><span class="who">YOI</span>書いてくれたら、ぼくが開発のひとに届けておくよ。返事がほしいときは、メールアドレスも忘れずにね。</div>
+  </div>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <form class="form-card" id="contact-form">
+    <div class="field">
+      <label for="cf-name">お名前（任意）</label>
+      <input id="cf-name" name="name" type="text" maxlength="100" autocomplete="name">
+    </div>
+    <div class="field">
+      <label for="cf-email">返信用メールアドレス（任意・返信をご希望の場合）</label>
+      <input id="cf-email" name="email" type="email" maxlength="200" autocomplete="email">
+    </div>
+    <div class="field">
+      <label for="cf-message">内容<span class="req">必須</span></label>
+      <textarea id="cf-message" name="message" maxlength="5000" required></textarea>
+    </div>
+    <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="field"><div class="cf-turnstile" data-sitekey="0x4AAAAAADv-5iOVlinTmIvp" data-theme="auto" data-language="ja"></div></div>
+    <button type="submit" class="submit">送信する</button>
+    <span class="form-status" id="form-status" role="status"></span>
+    <p class="form-note">送信内容は開発者への連絡のみに使用します。返信が必要な場合はメールアドレスをご記入ください。</p>
+  </form>
+  <script>
+  (() => {
+    const ENDPOINT = "https://debufftimer-contact.nsmtkz9.workers.dev";
+    const S = {"msg": "内容を入力してください", "turnstile": "ロボットでないことの確認を完了してください", "sending": "送信中…", "success": "送信しました。ありがとうございます", "error": "送信に失敗しました。時間をおいてお試しください"};
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("form-status");
+    const button = form.querySelector(".submit");
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const hasTurnstile = !!form.querySelector(".cf-turnstile");
+      const token = form.querySelector('[name="cf-turnstile-response"]')?.value ?? "";
+      const message = form.message.value.trim();
+      status.classList.remove("err");
+      if (!message) { status.textContent = S.msg; status.classList.add("err"); return; }
+      if (hasTurnstile && !token) { status.textContent = S.turnstile; status.classList.add("err"); return; }
+      button.disabled = true;
+      status.textContent = S.sending;
+      try {
+        const res = await fetch(ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: form.name.value, email: form.email.value, message,
+            token, website: form.website.value,
+          }),
+        });
+        const body = await res.json();
+        if (!body.ok) throw new Error(body.error);
+        form.reset();
+        if (window.turnstile) turnstile.reset();
+        status.textContent = S.success;
+      } catch {
+        status.textContent = S.error;
+        status.classList.add("err");
+        if (window.turnstile) turnstile.reset();
+      } finally {
+        button.disabled = false;
+      }
+    });
+  })();
+  </script>
+</section>
+</main>
+
+<footer>
+  <nav><a href="https://kizzz9.github.io/debufftimer-privacy-policy/">プライバシーポリシー</a><a href="#contact">お問い合わせ</a></nav>
+  <div>© 2026 DebuffTimer</div>
+</footer>
+</body>
+</html>

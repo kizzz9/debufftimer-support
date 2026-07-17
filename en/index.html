@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="DebuffTimer support page. Frequently asked questions and a contact form for reaching the developer.">
+<title>DebuffTimer — Support</title>
+<link rel="icon" href="../icon.png">
+<link rel="apple-touch-icon" href="../icon.png">
+<link rel="alternate" hreflang="ja" href="https://kizzz9.github.io/debufftimer-support/">
+<link rel="alternate" hreflang="en" href="https://kizzz9.github.io/debufftimer-support/en/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Dark is the canonical look. This is an app you open at night; light mode is the exception. */
+:root {
+  color-scheme: dark;
+  --bg: #0D0D0D; --surface: #1A1A1A; --well: #141414; --line: #2A2A2A;
+  --ink: #F3F4F6; --muted: #9CA3AF; --faint: #6B7280;
+  --accent: #D5A62E; --accent-weak: rgba(213,166,46,.45); --accent-soft: rgba(213,166,46,.10);
+  --accent-contrast: #0D0D0D;
+  --safe: #22C55E; --caution: #D5A62E; --danger: #EF5350; --critical: #A58AC6;
+  --hairline: rgba(255,255,255,.12);
+  --num: "Chakra Petch", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --bg: #F5F5F0; --surface: #FFFFFF; --well: #EDEDE6; --line: #E0E0D8;
+    --ink: #1F2937; --muted: #6B7280; --faint: #9CA3AF;
+    --accent: #96700F; --accent-weak: rgba(150,112,15,.45); --accent-soft: rgba(150,112,15,.08);
+    --accent-contrast: #FFFFFF;
+    --safe: #15803D; --caution: #96700F; --danger: #D32F2F; --critical: #7E62A8;
+    --hairline: rgba(31,41,55,.14);
+  }
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", sans-serif;
+  line-height: 1.7; font-size: 16px; -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); }
+.n { font-family: var(--num); font-weight: 600; }
+.container { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+/* ─ Site nav ─ */
+.site-nav {
+  background: var(--bg); border-bottom: 1px solid var(--line);
+  padding: 0 24px; display: flex; align-items: stretch;
+  font-size: .88em; position: sticky; top: 0; z-index: 100;
+}
+.site-nav .brand {
+  display: flex; align-items: center; gap: 9px; font-weight: 700;
+  text-decoration: none; color: var(--ink); padding: 10px 0; margin-right: 24px;
+}
+.site-nav .brand img { width: 22px; height: 22px; border-radius: 5px; }
+.site-nav a.nav-link {
+  text-decoration: none; color: var(--muted); font-weight: 500;
+  padding: 10px 14px; border-bottom: 2px solid transparent;
+}
+.site-nav a.nav-link:hover { color: var(--ink); }
+.site-nav a.nav-link.active { color: var(--accent); font-weight: 700; border-bottom-color: var(--accent); }
+
+/* ─ Hero: always dark (night is where the app lives) ─ */
+.hero { background: #0D0D0D; color: #F3F4F6; position: relative; overflow: hidden; padding: 72px 24px 64px; }
+.hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 90% 100% at 60% 0%, #000 25%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 100% at 60% 0%, #000 25%, transparent 75%);
+}
+.hero > * { position: relative; }
+.hero-grid {
+  max-width: 1020px; margin: 0 auto; display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  gap: 52px; align-items: center;
+}
+.hero-brand { display: flex; align-items: center; gap: 13px; margin-bottom: 24px; }
+.hero-brand img { width: 52px; height: 52px; border-radius: 12px; border: 1px solid rgba(255,255,255,.14); }
+.hero-brand .wordmark { font-weight: 800; font-size: 1.25em; letter-spacing: -.01em; }
+.hero h1 { font-size: 2.4em; font-weight: 800; letter-spacing: -.02em; line-height: 1.25; margin-bottom: 12px; }
+.hero p.lede { font-size: 1.05em; color: #9CA3AF; margin-bottom: 18px; }
+.meta-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 30px; }
+.meta-pills span {
+  font-size: .78em; color: #9CA3AF; border: 1px solid rgba(255,255,255,.16);
+  border-radius: 6px; padding: 3px 12px;
+}
+.meta-pills .n { font-size: 1em; color: #D5A62E; font-weight: 600; }
+
+/* Yoi, the guide (a voice always comes with a body) */
+.yoi-intro { display: flex; align-items: flex-end; gap: 14px; }
+.yoi-intro img { width: 104px; height: 104px; flex-shrink: 0; }
+.yoi-intro .bubble {
+  background: rgba(26,26,26,.85); border: 1px solid rgba(255,255,255,.14);
+  border-radius: 10px; padding: 13px 17px; font-size: .93em; line-height: 1.7;
+}
+.yoi-intro .who, .a.yoi .who {
+  font-family: var(--num); font-weight: 500; font-size: .72em; letter-spacing: .18em;
+  color: #D5A62E; display: block; margin-bottom: 3px;
+}
+
+/* Language switcher */
+.langs { position: absolute; top: 18px; right: 20px; display: flex; gap: 6px; }
+.langs a, .langs b {
+  font-family: var(--num); font-size: .72em; font-weight: 500; text-decoration: none;
+  padding: 4px 12px; border-radius: 6px; border: 1px solid transparent;
+}
+.langs a { color: #9CA3AF; }
+.langs a:hover { color: #F3F4F6; border-color: rgba(255,255,255,.25); }
+.langs b { color: #0D0D0D; background: #D5A62E; }
+
+/* ─ Brain-OS panel (the app dashboard, rebuilt in CSS) ─ */
+.panel {
+  background: #161616; border: 1px solid rgba(255,255,255,.14); border-radius: 12px;
+  box-shadow: 0 30px 80px rgba(0,0,0,.55); overflow: hidden;
+}
+.panel-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,.12);
+  font-family: var(--num); font-weight: 500; font-size: 11px; letter-spacing: .18em; color: #9CA3AF;
+}
+.panel-bar .live { display: flex; align-items: center; gap: 8px; }
+.panel-bar .live i {
+  width: 7px; height: 7px; border-radius: 50%; background: #EF5350;
+  animation: breathe 3.2s ease-in-out infinite;
+}
+@keyframes breathe { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .panel-bar .live i { animation: none; } }
+.panel-bar .clock { font-size: 14px; font-weight: 600; letter-spacing: .08em; color: #D5A62E; }
+.panel-body { display: flex; gap: 8px; padding: 18px 16px 10px; }
+.readout { flex: 1; min-width: 0; }
+.value-row { display: flex; align-items: baseline; gap: 8px; }
+.value-row .value { font-family: var(--num); font-weight: 700; font-size: 58px; line-height: 1; color: #EF5350; letter-spacing: .01em; }
+.value-row .cap { font-family: var(--num); font-weight: 500; font-size: 14px; color: #6B7280; }
+.value-row .state {
+  margin-left: auto; font-size: 12.5px; font-weight: 700; color: #EF5350;
+  border: 1px solid rgba(239,83,80,.5); border-radius: 4px; padding: 2px 10px; letter-spacing: .1em;
+}
+.gauge { height: 9px; background: rgba(255,255,255,.08); border-radius: 2px; margin: 14px 0 18px; position: relative; overflow: hidden; }
+.gauge i { display: block; height: 100%; background: #EF5350; }
+.gauge::after {
+  content: ""; position: absolute; inset: 0;
+  background: repeating-linear-gradient(90deg, transparent 0 11px, rgba(13,13,13,.6) 11px 12px);
+}
+.fx-head {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 8px;
+  font-family: var(--num); font-weight: 500; font-size: 10px; letter-spacing: .18em; color: #6B7280;
+}
+.fx-head .rule { flex: 1; height: 1px; background: rgba(255,255,255,.12); }
+.fx-head b { font-weight: 600; font-size: 12px; color: #9CA3AF; }
+.fx {
+  display: flex; align-items: center; gap: 9px; margin-bottom: 6px;
+  padding: 7px 11px; border-radius: 4px; font-size: 13px; color: #D1D5DB;
+}
+.fx svg { flex-shrink: 0; }
+.fx b { margin-left: auto; font-family: var(--num); font-weight: 700; font-size: 15px; }
+.fx.danger { border-left: 3px solid #EF5350; background: rgba(239,83,80,.08); }
+.fx.danger svg, .fx.danger b { color: #EF5350; }
+.fx.caution { border-left: 3px solid #D5A62E; background: rgba(213,166,46,.08); }
+.fx.caution svg, .fx.caution b { color: #D5A62E; }
+.panel-yoi { align-self: flex-end; width: 86px; height: 86px; margin-bottom: -2px; }
+.panel-foot {
+  display: flex; justify-content: space-between; gap: 12px;
+  border-top: 1px solid rgba(255,255,255,.12); padding: 9px 16px;
+  font-size: 11.5px; color: #6B7280;
+}
+.panel-foot .n { font-size: 12px; color: #9CA3AF; }
+@media (max-width: 880px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero h1 { font-size: 1.9em; }
+  .panel { max-width: 440px; }
+}
+@media (max-width: 640px) {
+  .langs { position: static; justify-content: flex-end; margin-bottom: 16px; }
+  .yoi-intro img { width: 84px; height: 84px; }
+}
+
+/* ─ Instrument section header (title — hairline — live data) ─ */
+.section { padding: 60px 0 8px; }
+.section:last-of-type { padding-bottom: 64px; }
+.ihead { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+.ihead h2 { font-size: 1.2em; font-weight: 700; letter-spacing: .01em; white-space: nowrap; }
+.ihead .rule { flex: 1; height: 1px; background: var(--hairline); }
+.ihead .meta { font-size: .8em; color: var(--muted); white-space: nowrap; }
+.ihead .meta .n { color: var(--accent); font-size: 1.1em; }
+.section p.sub { color: var(--muted); font-size: .93em; margin-bottom: 28px; }
+
+/* ─ FAQ ─ */
+details {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: 0 20px; margin-bottom: 10px;
+}
+details[open] { border-color: var(--accent-weak); }
+summary {
+  cursor: pointer; font-weight: 700; font-size: .96em; padding: 16px 0; list-style: none;
+  display: flex; align-items: baseline; gap: 12px;
+}
+summary::-webkit-details-marker { display: none; }
+summary .qn { font-family: var(--num); font-weight: 600; font-size: .78em; color: var(--accent); min-width: 36px; }
+summary .chev { margin-left: auto; color: var(--faint); font-size: .8em; transition: transform .2s; }
+details[open] summary .chev { transform: rotate(90deg); }
+.a { padding: 0 0 18px 48px; font-size: .93em; }
+.a.plain { color: var(--muted); }
+.a.plain a { font-weight: 600; }
+.a.yoi { display: flex; align-items: flex-start; gap: 13px; padding-left: 40px; }
+.a.yoi img { width: 56px; height: 56px; flex-shrink: 0; }
+.a.yoi .bubble {
+  background: var(--well); border: 1px solid var(--line); border-radius: 10px;
+  padding: 11px 15px; line-height: 1.7;
+}
+@media (max-width: 560px) { .a { padding-left: 0; } .a.yoi { padding-left: 0; } }
+
+/* ─ Contact ─ */
+.contact-yoi { display: flex; align-items: flex-end; gap: 13px; margin-bottom: 20px; }
+.contact-yoi img { width: 76px; height: 76px; flex-shrink: 0; }
+.contact-yoi .bubble {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: 12px 16px; font-size: .93em; line-height: 1.7;
+}
+.contact-yoi .who {
+  font-family: var(--num); font-weight: 500; font-size: .72em; letter-spacing: .18em;
+  color: var(--accent); display: block; margin-bottom: 3px;
+}
+.form-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 26px; }
+.field { margin-bottom: 15px; }
+.field label { display: block; font-size: .82em; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
+.field .req { color: var(--accent); margin-left: 8px; font-family: var(--num); font-size: .72em; letter-spacing: .08em; }
+.field input, .field textarea {
+  width: 100%; background: var(--bg); border: 1px solid var(--line);
+  border-radius: 8px; padding: 11px 13px; font: inherit; font-size: .95em; color: var(--ink);
+}
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.field textarea { min-height: 150px; resize: vertical; }
+.hp { position: absolute; left: -5000px; width: 1px; height: 1px; opacity: 0; }
+.submit {
+  display: inline-block; background: var(--accent); color: var(--accent-contrast);
+  border: none; border-radius: 8px; padding: 12px 30px;
+  font: inherit; font-size: .95em; font-weight: 700; cursor: pointer;
+}
+.submit:hover { filter: brightness(1.08); }
+.submit:disabled { opacity: .55; cursor: default; }
+.form-status { display: inline-block; margin-left: 14px; font-size: .9em; color: var(--accent); }
+.form-status.err { color: var(--danger); }
+.form-note { margin-top: 16px; font-size: .85em; color: var(--muted); }
+.cf-turnstile { margin-top: 4px; }
+
+/* ─ Footer ─ */
+footer { border-top: 1px solid var(--line); padding: 32px 24px; text-align: center; color: var(--muted); font-size: .85em; }
+footer nav { margin-bottom: 8px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+footer a { text-decoration: none; font-weight: 500; }
+footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<nav class="site-nav">
+  <a class="brand" href="./"><img src="../icon.png" alt="">DebuffTimer</a>
+  <a href="./" class="nav-link active">Support</a>
+  <a href="https://kizzz9.github.io/debufftimer-privacy-policy/en/" class="nav-link">Privacy Policy</a>
+</nav>
+
+<header class="hero">
+<div class="langs"><a href="../">日本語</a><b>English</b></div>
+<div class="hero-grid">
+<div>
+  <div class="hero-brand"><img src="../icon.png" alt="DebuffTimer"><span class="wordmark">DebuffTimer</span></div>
+  <h1>Support</h1>
+  <p class="lede">Frequently asked questions, and a direct line to the developer.</p>
+  <div class="meta-pills"><span><span class="n">iOS 18</span>+</span><span>No ads</span><span>On-device only</span></div>
+  <div class="yoi-intro">
+    <img src="../img/yoi_greeting.png" alt="Yoi" width="104" height="104">
+    <div class="bubble"><span class="who">YOI</span>Hi, I'm Yoi — your brain, more or less. Most questions end at the FAQ below. If yours survives it, the form at the bottom goes straight to the developer.</div>
+  </div>
+</div>
+<div class="panel" aria-hidden="true">
+  <div class="panel-bar">
+    <span class="live"><i></i>BRAIN STATUS</span>
+    <span class="clock">25:47</span>
+  </div>
+  <div class="panel-body">
+    <div class="readout">
+      <div class="value-row"><span class="value">92</span><span class="cap">/150</span><span class="state">DANGER</span></div>
+      <div class="gauge"><i style="width:39%"></i></div>
+      <div class="fx-head"><span>STATUS EFFECTS</span><span class="rule"></span><b>2</b></div>
+      <div class="fx danger">
+        <svg viewBox="0 0 16 16" width="15" height="15" fill="none"><path d="M8 2 L14.5 13.5 H1.5 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><line x1="8" y1="7" x2="8" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="12" r=".9" fill="currentColor"/></svg>
+        <span>Awake</span><b>20.3h</b>
+      </div>
+      <div class="fx caution">
+        <svg viewBox="0 0 16 16" width="15" height="15"><path d="M13.5 10.2 A6 6 0 1 1 5.8 2.5 A5 5 0 0 0 13.5 10.2 Z" fill="currentColor"/></svg>
+        <span>Sleep debt</span><b>−6.5h</b>
+      </div>
+    </div>
+    <img class="panel-yoi" src="../img/yoi_worried.png" alt="" width="86" height="86">
+  </div>
+  <div class="panel-foot"><span>≈ <span class="n">BAC 0.07%</span></span><span>woke <span class="n">05:30</span></span></div>
+</div>
+</div>
+</header>
+
+<main class="container">
+<section class="section" id="faq">
+  <div class="ihead"><h2>Frequently asked questions</h2><span class="rule"></span><span class="meta"><span class="n">10</span> questions</span></div>
+  <p class="sub">Yoi explains how things work; pricing, permissions, and data questions get a plain answer from the developer.</p>
+
+  <details>
+    <summary><span class="qn">Q01</span>What is the debuff value?<span class="chev">▸</span></summary>
+    <div class="a yoi">
+      <img src="../img/yoi_thinking.png" alt="" width="56" height="56">
+      <div class="bubble"><span class="who">YOI</span>It's the time you've been awake, converted into drunkenness. Runs from 0 to 150. Stay up 17 hours straight and your judgment is about as sharp as at 0.05% blood alcohol — that comes from a study by Williamson &amp; Feyer (2000). As the number climbs, I start looking worse, too.</div>
+    </div>
+  </details>
+  <details>
+    <summary><span class="qn">Q02</span>How does it go back down?<span class="chev">▸</span></summary>
+    <div class="a yoi">
+      <img src="../img/yoi_cheer.png" alt="" width="56" height="56">
+      <div class="bubble"><span class="who">YOI</span>Sleep. That's the whole trick. Seven hours means a full recovery; anything less heals only a fraction — your sleep divided by seven hours. A one-hour nap after an all-nighter is... well, a gesture.</div>
+    </div>
+  </details>
+  <details>
+    <summary><span class="qn">Q03</span>Are records automatic or manual?<span class="chev">▸</span></summary>
+    <div class="a yoi">
+      <img src="../img/yoi_pointing.png" alt="" width="56" height="56">
+      <div class="bubble"><span class="who">YOI</span>Manual at its core. Tap the sleep button when you head to bed, tap the wake button when you're up. If you allow Apple Health access, the app can also pull in sleep data automatically whenever you open it. That link is optional, and you can turn it on later.</div>
+    </div>
+  </details>
+  <details>
+    <summary><span class="qn">Q04</span>What notifications will I get?<span class="chev">▸</span></summary>
+    <div class="a yoi">
+      <img src="../img/yoi_bell.png" alt="" width="56" height="56">
+      <div class="bubble"><span class="who">YOI</span>If you're still up late at night, I send warnings. A little pushy, I know — it's my job. In the morning you just get the result, stated flatly. Both are local notifications built on your device; nothing comes from a server.</div>
+    </div>
+  </details>
+  <details>
+    <summary><span class="qn">Q05</span>What is Bedtime Shield?<span class="chev">▸</span></summary>
+    <div class="a plain">Bedtime Shield limits access to apps you choose, during hours you set. It is free. Because it uses Apple's Screen Time API (Family Controls), iOS will ask for Screen Time permission the first time you enable it. The apps you select are stored only as anonymous tokens issued by iOS, kept on your device — the developer cannot learn which apps you picked.</div>
+  </details>
+  <details>
+    <summary><span class="qn">Q06</span>How much is free?<span class="chev">▸</span></summary>
+    <div class="a plain">Everything that gets you to bed is free: the debuff display, night warnings and morning reports, the weekly wake schedule, date-specific overrides, Bedtime Shield, sleep records, day-by-day detail for the last 7 days, and 30-day charts and summaries. There are no ads.</div>
+  </details>
+  <details>
+    <summary><span class="qn">Q07</span>What does Pro unlock?<span class="chev">▸</span></summary>
+    <div class="a plain">A single one-time purchase (¥200 in Japan; local pricing may vary) unlocks day-by-day detail older than 7 days, month-over-month comparison, and notification customization. It is not a subscription — no monthly fee, no renewal.</div>
+  </details>
+  <details>
+    <summary><span class="qn">Q08</span>Are there ads?<span class="chev">▸</span></summary>
+    <div class="a plain">No. The app contains no advertising or tracking SDKs.</div>
+  </details>
+  <details>
+    <summary><span class="qn">Q09</span>Where is my data stored?<span class="chev">▸</span></summary>
+    <div class="a plain">Everything stays on your device. There is no backend server and no account system, and the developer has no way to access your data. See the <a href="https://kizzz9.github.io/debufftimer-privacy-policy/en/">privacy policy</a> for details.</div>
+  </details>
+  <details>
+    <summary><span class="qn">Q10</span>What are the requirements?<span class="chev">▸</span></summary>
+    <div class="a plain">An iPhone running iOS 18.0 or later.</div>
+  </details>
+</section>
+
+<section class="section" id="contact">
+  <div class="ihead"><h2>Contact</h2><span class="rule"></span><span class="meta"><span class="n">1</span> required field</span></div>
+  <p class="sub">Bug reports, feature requests, and questions are all welcome.</p>
+  <div class="contact-yoi">
+    <img src="../img/yoi_bell.png" alt="Yoi" width="76" height="76">
+    <div class="bubble"><span class="who">YOI</span>Write something and I'll carry it to the developer. If you'd like a reply, leave your email too.</div>
+  </div>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <form class="form-card" id="contact-form">
+    <div class="field">
+      <label for="cf-name">Name (optional)</label>
+      <input id="cf-name" name="name" type="text" maxlength="100" autocomplete="name">
+    </div>
+    <div class="field">
+      <label for="cf-email">Email for a reply (optional)</label>
+      <input id="cf-email" name="email" type="email" maxlength="200" autocomplete="email">
+    </div>
+    <div class="field">
+      <label for="cf-message">Message<span class="req">REQUIRED</span></label>
+      <textarea id="cf-message" name="message" maxlength="5000" required></textarea>
+    </div>
+    <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="field"><div class="cf-turnstile" data-sitekey="0x4AAAAAADv-5iOVlinTmIvp" data-theme="auto" data-language="en"></div></div>
+    <button type="submit" class="submit">Send</button>
+    <span class="form-status" id="form-status" role="status"></span>
+    <p class="form-note">Your message is used only to contact the developer. Include your email address if you would like a reply.</p>
+  </form>
+  <script>
+  (() => {
+    const ENDPOINT = "https://debufftimer-contact.nsmtkz9.workers.dev";
+    const S = {"msg": "Please enter a message", "turnstile": "Please complete the human verification", "sending": "Sending…", "success": "Sent. Thank you.", "error": "Failed to send. Please try again later."};
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("form-status");
+    const button = form.querySelector(".submit");
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const hasTurnstile = !!form.querySelector(".cf-turnstile");
+      const token = form.querySelector('[name="cf-turnstile-response"]')?.value ?? "";
+      const message = form.message.value.trim();
+      status.classList.remove("err");
+      if (!message) { status.textContent = S.msg; status.classList.add("err"); return; }
+      if (hasTurnstile && !token) { status.textContent = S.turnstile; status.classList.add("err"); return; }
+      button.disabled = true;
+      status.textContent = S.sending;
+      try {
+        const res = await fetch(ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: form.name.value, email: form.email.value, message,
+            token, website: form.website.value,
+          }),
+        });
+        const body = await res.json();
+        if (!body.ok) throw new Error(body.error);
+        form.reset();
+        if (window.turnstile) turnstile.reset();
+        status.textContent = S.success;
+      } catch {
+        status.textContent = S.error;
+        status.classList.add("err");
+        if (window.turnstile) turnstile.reset();
+      } finally {
+        button.disabled = false;
+      }
+    });
+  })();
+  </script>
+</section>
+</main>
+
+<footer>
+  <nav><a href="https://kizzz9.github.io/debufftimer-privacy-policy/en/">Privacy Policy</a><a href="#contact">Contact</a></nav>
+  <div>© 2026 DebuffTimer</div>
+</footer>
+</body>
+</html>

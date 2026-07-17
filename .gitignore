@@ -1,0 +1,10 @@
+.DS_Store
+
+# Cloudflare Worker のローカル秘密 / 生成物
+worker/.cf_token
+worker/.resend_key
+worker/*.key
+worker/.*_key
+worker/.dev.vars
+worker/.wrangler/
+worker/node_modules/
