@@ -383,7 +383,7 @@ footer a:hover { text-decoration: underline; }
       <label for="cf-message">内容<span class="req">必須</span></label>
       <textarea id="cf-message" name="message" maxlength="5000" required></textarea>
     </div>
-    <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="field"><div class="cf-turnstile" data-sitekey="0x4AAAAAADv-5iOVlinTmIvp" data-theme="auto" data-language="ja"></div></div>
     <button type="submit" class="submit">送信する</button>
     <span class="form-status" id="form-status" role="status"></span>
@@ -392,18 +392,18 @@ footer a:hover { text-decoration: underline; }
   <script>
   (() => {
     const ENDPOINT = "https://debufftimer-contact.nsmtkz9.workers.dev";
-    const S = {"msg": "内容を入力してください", "turnstile": "ロボットでないことの確認を完了してください", "sending": "送信中…", "success": "送信しました。ありがとうございます", "error": "送信に失敗しました。時間をおいてお試しください"};
+    const S = {"msg": "内容を入力してください", "sending": "送信中…", "success": "送信しました。ありがとうございます", "error": "送信に失敗しました。時間をおいてお試しください"};
     const form = document.getElementById("contact-form");
     const status = document.getElementById("form-status");
     const button = form.querySelector(".submit");
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
-      const hasTurnstile = !!form.querySelector(".cf-turnstile");
-      const token = form.querySelector('[name="cf-turnstile-response"]')?.value ?? "";
+      // Turnstile スクリプトが未ロード（広告ブロッカー・CSP等）でも送信は止めない。
+      // token が実際に取れた場合だけ付け、検証の要否は Worker 側に委ねる。
+      const token = (window.turnstile && form.querySelector('[name="cf-turnstile-response"]')?.value) || "";
       const message = form.message.value.trim();
       status.classList.remove("err");
       if (!message) { status.textContent = S.msg; status.classList.add("err"); return; }
-      if (hasTurnstile && !token) { status.textContent = S.turnstile; status.classList.add("err"); return; }
       button.disabled = true;
       status.textContent = S.sending;
       try {
@@ -412,7 +412,7 @@ footer a:hover { text-decoration: underline; }
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             name: form.name.value, email: form.email.value, message,
-            token, website: form.website.value,
+            token, _gotcha: form._gotcha.value,
           }),
         });
         const body = await res.json();

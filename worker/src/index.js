@@ -44,7 +44,7 @@ export default {
     const email = (payload.email ?? "").toString().trim().slice(0, 200);
     const message = (payload.message ?? "").toString().trim();
     const token = (payload.token ?? "").toString();
-    const honeypot = (payload.website ?? "").toString();
+    const honeypot = (payload._gotcha ?? "").toString();
 
     // ボットは隠しフィールドを埋める。埋まっていたら成功を装って捨てる。
     if (honeypot) return json({ ok: true });
@@ -61,15 +61,22 @@ export default {
       if (!token) {
         return json({ ok: false, error: "turnstile_required" }, 400);
       }
-      const verify = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-        method: "POST",
-        body: new URLSearchParams({
-          secret: env.TURNSTILE_SECRET,
-          response: token,
-          remoteip: request.headers.get("CF-Connecting-IP") ?? "",
-        }),
-      });
-      const verdict = await verify.json();
+      // siteverify の接続失敗・非JSON応答で裸の 500（CORSなし）にしない
+      let verdict;
+      try {
+        const verify = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+          method: "POST",
+          body: new URLSearchParams({
+            secret: env.TURNSTILE_SECRET,
+            response: token,
+            remoteip: request.headers.get("CF-Connecting-IP") ?? "",
+          }),
+        });
+        verdict = await verify.json();
+      } catch (err) {
+        console.log(`turnstile siteverify failed: ${err}`);
+        return json({ ok: false, error: "turnstile_unavailable" }, 502);
+      }
       if (!verdict.success) {
         return json({ ok: false, error: "turnstile_failed" }, 403);
       }
@@ -84,24 +91,29 @@ export default {
       message,
     ];
 
-    const send = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${env.RESEND_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: "DebuffTimer Support <onboarding@resend.dev>",
-        to: [env.CONTACT_TO],
-        subject: `[DebuffTimer] お問い合わせ${name ? ` - ${name}` : ""}`,
-        text: lines.join("\n"),
-        ...(email ? { reply_to: email } : {}),
-      }),
-    });
-
-    if (!send.ok) {
-      const detail = await send.text();
-      console.log(`resend error ${send.status}: ${detail.slice(0, 300)}`);
+    // Resend の接続失敗・タイムアウトでも CORS 付き JSON で返す
+    try {
+      const send = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${env.RESEND_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: "DebuffTimer Support <onboarding@resend.dev>",
+          to: [env.CONTACT_TO],
+          subject: `[DebuffTimer] お問い合わせ${name ? ` - ${name}` : ""}`,
+          text: lines.join("\n"),
+          ...(email ? { reply_to: email } : {}),
+        }),
+      });
+      if (!send.ok) {
+        const detail = await send.text();
+        console.log(`resend error ${send.status}: ${detail.slice(0, 300)}`);
+        return json({ ok: false, error: "send_failed" }, 502);
+      }
+    } catch (err) {
+      console.log(`resend fetch failed: ${err}`);
       return json({ ok: false, error: "send_failed" }, 502);
     }
 
