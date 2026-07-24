@@ -305,7 +305,7 @@ footer a:hover { text-decoration: underline; }
 
 <main class="container">
 <section class="section" id="faq">
-  <div class="ihead"><h2>Frequently asked questions</h2><span class="rule"></span><span class="meta"><span class="n">10</span> questions</span></div>
+  <div class="ihead"><h2>Frequently asked questions</h2><span class="rule"></span><span class="meta"><span class="n">13</span> questions</span></div>
   <p class="sub">Yoi explains how things work; pricing, permissions, and data questions get a plain answer from the developer.</p>
 
   <details>
@@ -326,7 +326,7 @@ footer a:hover { text-decoration: underline; }
     <summary><span class="qn">Q03</span>Are records automatic or manual?<span class="chev">▸</span></summary>
     <div class="a yoi">
       <img src="../img/yoi_pointing.png" alt="" width="56" height="56">
-      <div class="bubble"><span class="who">YOI</span>Manual at its core. Tap the sleep button when you head to bed, tap the wake button when you're up. If you allow Apple Health access, the app can also pull in sleep data automatically whenever you open it. That link is optional, and you can turn it on later.</div>
+      <div class="bubble"><span class="who">YOI</span>Manual at its core. Tap the sleep button when you head to bed, tap the wake button when you're up. If you allow Apple Health access, the app can also pull in sleep data automatically whenever you open it. That link is optional, and you can turn it on later. You can also edit or delete any recorded sleep entry.</div>
     </div>
   </details>
   <details>
@@ -342,11 +342,11 @@ footer a:hover { text-decoration: underline; }
   </details>
   <details>
     <summary><span class="qn">Q06</span>How much is free?<span class="chev">▸</span></summary>
-    <div class="a plain">Everything that gets you to bed is free: the debuff display, night warnings and morning reports, the weekly wake schedule, date-specific overrides, Bedtime Shield, sleep records, day-by-day detail for the last 7 days, and 30-day charts and summaries. There are no ads.</div>
+    <div class="a plain">Everything that gets you to bed is free: the debuff display, night warnings and morning reports, the weekly wake schedule, date-specific overrides, Bedtime Shield, sleep records (with edit and delete), sleep analysis (5-axis score and stage timeline), day-by-day detail for the last 7 days, 30-day charts and summaries, home screen widgets, and Lock Screen Live Activities. Dark/Light mode is also supported. There are no ads.</div>
   </details>
   <details>
     <summary><span class="qn">Q07</span>What does Pro unlock?<span class="chev">▸</span></summary>
-    <div class="a plain">A single one-time purchase (¥200 in Japan; local pricing may vary) unlocks day-by-day detail older than 7 days, month-over-month comparison, and notification customization. It is not a subscription — no monthly fee, no renewal.</div>
+    <div class="a plain">A single one-time purchase (¥300 in Japan; local pricing may vary) unlocks day-by-day detail older than 7 days, month-over-month comparison, and notification customization. It is not a subscription — no monthly fee, no renewal.</div>
   </details>
   <details>
     <summary><span class="qn">Q08</span>Are there ads?<span class="chev">▸</span></summary>
@@ -359,6 +359,32 @@ footer a:hover { text-decoration: underline; }
   <details>
     <summary><span class="qn">Q10</span>What are the requirements?<span class="chev">▸</span></summary>
     <div class="a plain">An iPhone running iOS 18.0 or later.</div>
+  </details>
+  <details id="sleep-data-guide">
+    <summary><span class="qn">Q11</span>What's different with an Apple Watch?<span class="chev">▸</span></summary>
+    <div class="a yoi">
+      <img src="../img/yoi_pointing.png" alt="" width="56" height="56">
+      <div class="bubble"><span class="who">YOI</span>Quite a lot, actually. When you wear an Apple Watch to bed, Apple Health records <strong>sleep stages</strong> (REM, Core, Deep) along with <strong>heart rate, heart rate variability, and respiratory rate</strong>. DebuffTimer reads all of that and shows you a stage timeline plus biometrics in the analysis screen. Without a Watch, you only get total sleep time — the depth of analysis is on a different level.</div>
+    </div>
+  </details>
+  <details>
+    <summary><span class="qn">Q12</span>How do I track sleep with just an iPhone?<span class="chev">▸</span></summary>
+    <div class="a plain">You can still track sleep with an iPhone alone. Here's how to set it up:
+    <br><br>
+    <strong>① Enable the Sleep Schedule in Health</strong><br>
+    Open the Health app → "Sleep" → "Schedule." Set your bedtime and wake time, and toggle it on. Your iPhone will detect when it's placed on the bedside and automatically record your sleep.
+    <br><br>
+    <strong>② Allow HealthKit access in DebuffTimer</strong><br>
+    Go to DebuffTimer's Settings → Sleep Data and turn on HealthKit sync. The app will auto-import your records each time you open it.
+    <br><br>
+    Note that iPhone alone does not record sleep stages (REM, Core, Deep), so the analysis focuses on sleep duration and bed/wake times. For deeper insights, pairing with an Apple Watch is recommended.</div>
+  </details>
+  <details>
+    <summary><span class="qn">Q13</span>What analysis does Pro add?<span class="chev">▸</span></summary>
+    <div class="a yoi">
+      <img src="../img/yoi_thinking.png" alt="" width="56" height="56">
+      <div class="bubble"><span class="who">YOI</span>The free tier already shows the last 7 days of analysis. Pro unlocks <strong>full history</strong> for day-by-day review beyond that, plus <strong>month-over-month comparison</strong> so you can spot rhythm changes over time. If you have Apple Watch data, you can look back at all five score axes (Duration, Continuity, Regularity, Timing, Architecture) and see how your sleep patterns have evolved long-term.</div>
+    </div>
   </details>
 </section>
 

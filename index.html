@@ -305,7 +305,7 @@ footer a:hover { text-decoration: underline; }
 
 <main class="container">
 <section class="section" id="faq">
-  <div class="ihead"><h2>よくある質問</h2><span class="rule"></span><span class="meta">全 <span class="n">10</span> 問</span></div>
+  <div class="ihead"><h2>よくある質問</h2><span class="rule"></span><span class="meta">全 <span class="n">13</span> 問</span></div>
   <p class="sub">仕組みの説明はヨイが、料金や権限のことは運営が答えます。</p>
 
   <details>
@@ -326,7 +326,7 @@ footer a:hover { text-decoration: underline; }
     <summary><span class="qn">Q03</span>記録は自動でつく？<span class="chev">▸</span></summary>
     <div class="a yoi">
       <img src="img/yoi_pointing.png" alt="" width="56" height="56">
-      <div class="bubble"><span class="who">YOI</span>基本は手動。寝るときに「寝る」、起きたら「起きた」をタップしてね。ヘルスケア連携を許可すると、アプリを開いたタイミングで睡眠データを自動で取り込めるよ。連携は任意で、あとからでも設定できる。</div>
+      <div class="bubble"><span class="who">YOI</span>基本は手動。寝るときに「寝る」、起きたら「起きた」をタップしてね。ヘルスケア連携を許可すると、アプリを開いたタイミングで睡眠データを自動で取り込めるよ。連携は任意で、あとからでも設定できる。記録した睡眠はあとから編集・削除もできるよ。</div>
     </div>
   </details>
   <details>
@@ -342,11 +342,11 @@ footer a:hover { text-decoration: underline; }
   </details>
   <details>
     <summary><span class="qn">Q06</span>無料でどこまで使える？<span class="chev">▸</span></summary>
-    <div class="a plain">寝かせるための機能はすべて無料です。デバフ値の可視化、夜の警告通知と朝の結果通知、週間起床スケジュール、特定日の上書き、就寝シールド、睡眠記録、直近7日の日別詳細、30日グラフなどの集計が含まれます。広告もありません。</div>
+    <div class="a plain">寝かせるための機能はすべて無料です。デバフ値の可視化、夜の警告通知と朝の結果通知、週間起床スケジュール、特定日の上書き、就寝シールド、睡眠記録（編集・削除可）、睡眠分析（5軸スコア・ステージタイムライン）、直近7日の日別詳細、30日グラフなどの集計、ホーム画面ウィジェット、ロック画面のライブアクティビティが含まれます。ダーク/ライトモードの切替にも対応しています。広告もありません。</div>
   </details>
   <details>
     <summary><span class="qn">Q07</span>Pro では何ができる？<span class="chev">▸</span></summary>
-    <div class="a plain">¥200 の買い切りで、7日より前の日別詳細の閲覧、前月比較、通知のカスタマイズが解放されます。サブスクリプションではないため、月額や更新はありません。</div>
+    <div class="a plain">¥300 の買い切りで、7日より前の日別詳細の閲覧、前月比較、通知のカスタマイズが解放されます。サブスクリプションではないため、月額や更新はありません。</div>
   </details>
   <details>
     <summary><span class="qn">Q08</span>広告は表示される？<span class="chev">▸</span></summary>
@@ -359,6 +359,32 @@ footer a:hover { text-decoration: underline; }
   <details>
     <summary><span class="qn">Q10</span>対応環境は？<span class="chev">▸</span></summary>
     <div class="a plain">iOS 18.0 以降の iPhone に対応しています。</div>
+  </details>
+  <details id="sleep-data-guide">
+    <summary><span class="qn">Q11</span>Apple Watch があると何が違う？<span class="chev">▸</span></summary>
+    <div class="a yoi">
+      <img src="img/yoi_pointing.png" alt="" width="56" height="56">
+      <div class="bubble"><span class="who">YOI</span>けっこう違うよ。Apple Watch をつけて寝ると、ヘルスケアに <strong>睡眠ステージ</strong>（レム・コア・深い睡眠）と、<strong>心拍数・心拍変動・呼吸数</strong> が記録される。DebuffTimer はこれを読み取って、睡眠構造のタイムラインやバイオメトリクスを分析画面に出す。Watch なしだと合計睡眠時間だけになるから、分析の深さが段違いなんだ。</div>
+    </div>
+  </details>
+  <details>
+    <summary><span class="qn">Q12</span>iPhone だけで睡眠を記録するには？<span class="chev">▸</span></summary>
+    <div class="a plain">iPhone だけでも睡眠データは記録できます。以下を設定してください。
+    <br><br>
+    <strong>① ヘルスケアの睡眠スケジュールを有効にする</strong><br>
+    「ヘルスケア」アプリ → 「睡眠」→「スケジュール」で就寝・起床時刻を設定してオンにします。iPhone がベッドサイドに置かれている間の動きを検知して、自動的に睡眠を記録します。
+    <br><br>
+    <strong>② DebuffTimer でヘルスケア連携を許可する</strong><br>
+    DebuffTimer の「設定」→「睡眠データ」で「ヘルスケア連携」をオンにすると、アプリを開いたタイミングで記録を自動取り込みします。
+    <br><br>
+    iPhone 単体ではステージデータ（レム・コア・深い睡眠）は記録されないため、睡眠時間と就寝・起床時刻が中心の分析になります。より詳しい分析が欲しい場合は Apple Watch の併用がおすすめです。</div>
+  </details>
+  <details>
+    <summary><span class="qn">Q13</span>Pro だとどんな分析ができる？<span class="chev">▸</span></summary>
+    <div class="a yoi">
+      <img src="img/yoi_thinking.png" alt="" width="56" height="56">
+      <div class="bubble"><span class="who">YOI</span>無料でも直近7日の分析は見られるよ。Pro にすると <strong>8日以上前の全履歴</strong> を日別で振り返れるようになるのと、<strong>前月との比較</strong> でリズムの変化が見えるようになる。Apple Watch のデータがあれば、5軸スコア（睡眠時間・連続性・規則性・タイミング・睡眠構造）をさかのぼって確認できるから、自分の睡眠パターンが長期でどう変わったかがわかるよ。</div>
+    </div>
   </details>
 </section>
 
