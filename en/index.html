@@ -207,6 +207,11 @@ summary .chev { margin-left: auto; color: var(--faint); font-size: .8em; transit
 details[open] summary .chev { transform: rotate(90deg); }
 .a { padding: 0 0 18px 48px; font-size: .93em; }
 .a.plain { color: var(--muted); }
+.a.plain .note {
+  display: block; margin-top: 4px; padding: 9px 13px;
+  background: var(--well); border: 1px solid var(--line); border-radius: 8px;
+  font-size: .92em; line-height: 1.75;
+}
 .a.plain a { font-weight: 600; }
 .a.yoi { display: flex; align-items: flex-start; gap: 13px; padding-left: 40px; }
 .a.yoi img { width: 56px; height: 56px; flex-shrink: 0; }
@@ -305,7 +310,7 @@ footer a:hover { text-decoration: underline; }
 
 <main class="container">
 <section class="section" id="faq">
-  <div class="ihead"><h2>Frequently asked questions</h2><span class="rule"></span><span class="meta"><span class="n">13</span> questions</span></div>
+  <div class="ihead"><h2>Frequently asked questions</h2><span class="rule"></span><span class="meta"><span class="n">10</span> questions</span></div>
   <p class="sub">Yoi explains how things work; pricing, permissions, and data questions get a plain answer from the developer.</p>
 
   <details>
@@ -360,30 +365,63 @@ footer a:hover { text-decoration: underline; }
     <summary><span class="qn">Q10</span>What are the requirements?<span class="chev">▸</span></summary>
     <div class="a plain">An iPhone running iOS 18.0 or later.</div>
   </details>
-  <details id="sleep-data-guide">
-    <summary><span class="qn">Q11</span>What's different with an Apple Watch?<span class="chev">▸</span></summary>
+</section>
+
+<section class="section" id="sleep-data-guide">
+  <div class="ihead"><h2>Getting your sleep data in</h2><span class="rule"></span><span class="meta"><span class="n">3</span> topics</span></div>
+  <p class="sub">DebuffTimer reads the sleep records stored in your iPhone's Health app. What gets recorded depends on whether you wear an Apple Watch to bed.</p>
+
+  <details open>
+    <summary><span class="qn">01</span>What does wearing an Apple Watch add?<span class="chev">▸</span></summary>
     <div class="a yoi">
       <img src="../img/yoi_pointing.png" alt="" width="56" height="56">
-      <div class="bubble"><span class="who">YOI</span>Quite a lot, actually. When you wear an Apple Watch to bed, Apple Health records <strong>sleep stages</strong> (REM, Core, Deep) along with <strong>heart rate, heart rate variability, and respiratory rate</strong>. DebuffTimer reads all of that and shows you a stage timeline plus biometrics in the analysis screen. Without a Watch, you only get total sleep time — the depth of analysis is on a different level.</div>
+      <div class="bubble"><span class="who">YOI</span>You get to see what your sleep was actually made of. With just an iPhone, Health only knows when you fell asleep and when you woke up. Wear an Apple Watch and it also records how your sleep depth shifted through the night, plus what your body was doing while you slept. DebuffTimer reads all of that and turns it into charts and scores.</div>
+    </div>
+    <div class="a plain">
+    <strong>Without an Apple Watch (iPhone only)</strong><br>
+    · The time you fell asleep and woke up<br>
+    · Total hours slept
+    <br><br>
+    <strong>With an Apple Watch</strong><br>
+    You also get:<br>
+    · How your sleep depth changed through the night (deep sleep / light sleep / dreaming)<br>
+    · Heart rate, heart rate variability, and breathing rate while asleep<br>
+    · How often and how long you woke up during the night
+    <br><br>
+    DebuffTimer uses this to score each night on five things: how long you slept, how unbroken it was, how steady your bedtime is, how far off your plan you were, and the mix of sleep depths.
     </div>
   </details>
+
   <details>
-    <summary><span class="qn">Q12</span>How do I track sleep with just an iPhone?<span class="chev">▸</span></summary>
-    <div class="a plain">You can still track sleep with an iPhone alone. Here's how to set it up:
+    <summary><span class="qn">02</span>How do I set it up with just an iPhone?<span class="chev">▸</span></summary>
+    <div class="a plain">You don't need an Apple Watch. Set up these two things and your sleep will be recorded automatically.
     <br><br>
-    <strong>① Enable the Sleep Schedule in Health</strong><br>
-    Open the Health app → "Sleep" → "Schedule." Set your bedtime and wake time, and toggle it on. Your iPhone will detect when it's placed on the bedside and automatically record your sleep.
+    <strong>1. Turn on the Sleep Schedule in the Health app</strong><br>
+    Open the Health app on your iPhone → "Browse" at the bottom → "Sleep" → "Set Up Sleep Schedule." Enter your bedtime and wake time, then switch it on.<br>
+    From then on, your iPhone uses movement while it sits by your bed to record the hours you were asleep.
     <br><br>
-    <strong>② Allow HealthKit access in DebuffTimer</strong><br>
-    Go to DebuffTimer's Settings → Sleep Data and turn on HealthKit sync. The app will auto-import your records each time you open it.
+    <strong>2. Let DebuffTimer read Health</strong><br>
+    In DebuffTimer, go to Settings → Sleep Data → and turn on the Health connection. When the permission screen appears, allow access to sleep data.<br>
+    After that, DebuffTimer pulls in your records every time you open the app.
     <br><br>
-    Note that iPhone alone does not record sleep stages (REM, Core, Deep), so the analysis focuses on sleep duration and bed/wake times. For deeper insights, pairing with an Apple Watch is recommended.</div>
+    <span class="note">With an iPhone alone, sleep depth is not recorded — you'll mainly see sleep duration and your bed and wake times. To see what your sleep was made of, wear an Apple Watch to bed.</span>
+    </div>
   </details>
+
   <details>
-    <summary><span class="qn">Q13</span>What analysis does Pro add?<span class="chev">▸</span></summary>
-    <div class="a yoi">
-      <img src="../img/yoi_thinking.png" alt="" width="56" height="56">
-      <div class="bubble"><span class="who">YOI</span>The free tier already shows the last 7 days of analysis. Pro unlocks <strong>full history</strong> for day-by-day review beyond that, plus <strong>month-over-month comparison</strong> so you can spot rhythm changes over time. If you have Apple Watch data, you can look back at all five score axes (Duration, Continuity, Regularity, Timing, Architecture) and see how your sleep patterns have evolved long-term.</div>
+    <summary><span class="qn">03</span>Nothing is coming in — what now?<span class="chev">▸</span></summary>
+    <div class="a plain">Check these in order.
+    <br><br>
+    <strong>1. Is there any sleep data in the Health app?</strong><br>
+    Open Health → "Browse" → "Sleep" and look for that day. If it's empty, nothing was recorded on the iPhone / Apple Watch side yet — check the setup in topic 02 above.
+    <br><br>
+    <strong>2. Does DebuffTimer have permission?</strong><br>
+    Go to iPhone Settings → Apps → Health → Data Access &amp; Devices → DebuffTimer, and make sure Sleep is switched on.
+    <br><br>
+    <strong>3. Import by hand</strong><br>
+    In DebuffTimer, tap Settings → Sleep Data → Import now to re-read Health on the spot.
+    <br><br>
+    <span class="note">If the Health record changes later — after you fall back asleep in the morning, for instance — DebuffTimer follows those changes automatically for the last three days.</span>
     </div>
   </details>
 </section>

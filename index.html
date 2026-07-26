@@ -207,6 +207,11 @@ summary .chev { margin-left: auto; color: var(--faint); font-size: .8em; transit
 details[open] summary .chev { transform: rotate(90deg); }
 .a { padding: 0 0 18px 48px; font-size: .93em; }
 .a.plain { color: var(--muted); }
+.a.plain .note {
+  display: block; margin-top: 4px; padding: 9px 13px;
+  background: var(--well); border: 1px solid var(--line); border-radius: 8px;
+  font-size: .92em; line-height: 1.75;
+}
 .a.plain a { font-weight: 600; }
 .a.yoi { display: flex; align-items: flex-start; gap: 13px; padding-left: 40px; }
 .a.yoi img { width: 56px; height: 56px; flex-shrink: 0; }
@@ -305,7 +310,7 @@ footer a:hover { text-decoration: underline; }
 
 <main class="container">
 <section class="section" id="faq">
-  <div class="ihead"><h2>よくある質問</h2><span class="rule"></span><span class="meta">全 <span class="n">13</span> 問</span></div>
+  <div class="ihead"><h2>よくある質問</h2><span class="rule"></span><span class="meta">全 <span class="n">10</span> 問</span></div>
   <p class="sub">仕組みの説明はヨイが、料金や権限のことは運営が答えます。</p>
 
   <details>
@@ -360,30 +365,63 @@ footer a:hover { text-decoration: underline; }
     <summary><span class="qn">Q10</span>対応環境は？<span class="chev">▸</span></summary>
     <div class="a plain">iOS 18.0 以降の iPhone に対応しています。</div>
   </details>
-  <details id="sleep-data-guide">
-    <summary><span class="qn">Q11</span>Apple Watch があると何が違う？<span class="chev">▸</span></summary>
+</section>
+
+<section class="section" id="sleep-data-guide">
+  <div class="ihead"><h2>睡眠データの取り方</h2><span class="rule"></span><span class="meta">全 <span class="n">3</span> 項</span></div>
+  <p class="sub">DebuffTimer は iPhone の「ヘルスケア」アプリに入っている睡眠の記録を読み取ります。何が記録されるかは、寝るときに Apple Watch を着けるかどうかで変わります。</p>
+
+  <details open>
+    <summary><span class="qn">01</span>Apple Watch を着けて寝ると何が増える？<span class="chev">▸</span></summary>
     <div class="a yoi">
       <img src="img/yoi_pointing.png" alt="" width="56" height="56">
-      <div class="bubble"><span class="who">YOI</span>けっこう違うよ。Apple Watch をつけて寝ると、ヘルスケアに <strong>睡眠ステージ</strong>（レム・コア・深い睡眠）と、<strong>心拍数・心拍変動・呼吸数</strong> が記録される。DebuffTimer はこれを読み取って、睡眠構造のタイムラインやバイオメトリクスを分析画面に出す。Watch なしだと合計睡眠時間だけになるから、分析の深さが段違いなんだ。</div>
+      <div class="bubble"><span class="who">YOI</span>眠りの「中身」がわかるようになるよ。iPhone だけだと「何時から何時まで寝たか」しか記録されないけど、Apple Watch を着けて寝ると、眠りの深さの移り変わりと、寝ている間の体の状態もヘルスケアに残る。DebuffTimer はそれを読んで、グラフや点数にして見せるんだ。</div>
+    </div>
+    <div class="a plain">
+    <strong>Apple Watch なし（iPhone だけ）</strong><br>
+    ・寝た時刻と起きた時刻<br>
+    ・合計で何時間眠れたか
+    <br><br>
+    <strong>Apple Watch あり</strong><br>
+    上に加えて、次のものが記録されます。<br>
+    ・眠りの深さの移り変わり（深い眠り / 浅い眠り / 夢を見ている状態）<br>
+    ・寝ている間の心拍数、心拍のゆらぎ、呼吸の回数<br>
+    ・夜中に目が覚めた回数と時間
+    <br><br>
+    DebuffTimer ではこれを使って、その夜の眠りを5つの観点（眠った長さ・途切れなさ・寝る時刻の安定・予定とのズレ・眠りの深さの構成）で採点します。
     </div>
   </details>
+
   <details>
-    <summary><span class="qn">Q12</span>iPhone だけで睡眠を記録するには？<span class="chev">▸</span></summary>
-    <div class="a plain">iPhone だけでも睡眠データは記録できます。以下を設定してください。
+    <summary><span class="qn">02</span>iPhone だけで記録するには？<span class="chev">▸</span></summary>
+    <div class="a plain">Apple Watch がなくても大丈夫です。次の2つを設定すると、寝た時間が自動で記録されます。
     <br><br>
-    <strong>① ヘルスケアの睡眠スケジュールを有効にする</strong><br>
-    「ヘルスケア」アプリ → 「睡眠」→「スケジュール」で就寝・起床時刻を設定してオンにします。iPhone がベッドサイドに置かれている間の動きを検知して、自動的に睡眠を記録します。
+    <strong>1. ヘルスケアアプリで睡眠スケジュールをオンにする</strong><br>
+    iPhone の「ヘルスケア」アプリを開く → 下の「ブラウズ」→「睡眠」→「スケジュールを設定」。寝る時刻と起きる時刻を入れて、スイッチをオンにします。<br>
+    これで、iPhone を枕元に置いて寝ている間の動きから、眠っていた時間が自動で記録されます。
     <br><br>
-    <strong>② DebuffTimer でヘルスケア連携を許可する</strong><br>
-    DebuffTimer の「設定」→「睡眠データ」で「ヘルスケア連携」をオンにすると、アプリを開いたタイミングで記録を自動取り込みします。
+    <strong>2. DebuffTimer にヘルスケアの読み取りを許可する</strong><br>
+    DebuffTimer の「設定」→「睡眠データ」→「ヘルスケア連携」をオンにします。許可を求める画面が出たら、睡眠のデータを許可してください。<br>
+    以降はアプリを開いたときに、ヘルスケアの記録を自動で取り込みます。
     <br><br>
-    iPhone 単体ではステージデータ（レム・コア・深い睡眠）は記録されないため、睡眠時間と就寝・起床時刻が中心の分析になります。より詳しい分析が欲しい場合は Apple Watch の併用がおすすめです。</div>
+    <span class="note">iPhone だけの場合、眠りの深さは記録されません。表示されるのは睡眠時間と就寝・起床の時刻が中心になります。眠りの中身まで見たいときは Apple Watch を着けて寝てください。</span>
+    </div>
   </details>
+
   <details>
-    <summary><span class="qn">Q13</span>Pro だとどんな分析ができる？<span class="chev">▸</span></summary>
-    <div class="a yoi">
-      <img src="img/yoi_thinking.png" alt="" width="56" height="56">
-      <div class="bubble"><span class="who">YOI</span>無料でも直近7日の分析は見られるよ。Pro にすると <strong>8日以上前の全履歴</strong> を日別で振り返れるようになるのと、<strong>前月との比較</strong> でリズムの変化が見えるようになる。Apple Watch のデータがあれば、5軸スコア（睡眠時間・連続性・規則性・タイミング・睡眠構造）をさかのぼって確認できるから、自分の睡眠パターンが長期でどう変わったかがわかるよ。</div>
+    <summary><span class="qn">03</span>うまく取り込めないときは<span class="chev">▸</span></summary>
+    <div class="a plain">次の順に確かめてください。
+    <br><br>
+    <strong>1. ヘルスケアアプリに睡眠の記録があるか</strong><br>
+    「ヘルスケア」→「ブラウズ」→「睡眠」を開いて、その日のデータが入っているか見ます。ここが空なら、まだ iPhone / Apple Watch 側で記録できていません（上の 02 の設定を確認してください）。
+    <br><br>
+    <strong>2. DebuffTimer に読み取りが許可されているか</strong><br>
+    iPhone の「設定」→「アプリ」→「ヘルスケア」→「データアクセスとデバイス」→「DebuffTimer」で、睡眠のスイッチがオンになっているか確認します。
+    <br><br>
+    <strong>3. 手動で取り込む</strong><br>
+    DebuffTimer の「設定」→「睡眠データ」→「今すぐ取り込む」を押すと、その場でヘルスケアを読み直します。
+    <br><br>
+    <span class="note">二度寝した夜など、あとからヘルスケア側の記録が変わった場合も、直近3日ぶんは自動で追いかけて直します。</span>
     </div>
   </details>
 </section>
