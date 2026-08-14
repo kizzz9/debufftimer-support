@@ -309,64 +309,6 @@ footer a:hover { text-decoration: underline; }
 </header>
 
 <main class="container">
-<section class="section" id="faq">
-  <div class="ihead"><h2>よくある質問</h2><span class="rule"></span><span class="meta">全 <span class="n">10</span> 問</span></div>
-  <p class="sub">仕組みの説明はヨイが、料金や権限のことは運営が答えます。</p>
-
-  <details>
-    <summary><span class="qn">Q01</span>デバフ値ってなに？<span class="chev">▸</span></summary>
-    <div class="a yoi">
-      <img src="img/yoi_thinking.png" alt="" width="56" height="56">
-      <div class="bubble"><span class="who">YOI</span>起きてる時間を、酔いに換算した数字だよ。0から150。人は17時間起き続けると、血中アルコール0.05%と同じくらい判断が鈍る — Williamson &amp; Feyer（2000）という研究がもとになってる。数字が上がると、ぼくの見た目もだんだん悪くなっていくよ。</div>
-    </div>
-  </details>
-  <details>
-    <summary><span class="qn">Q02</span>デバフ値はどうすれば下がる？<span class="chev">▸</span></summary>
-    <div class="a yoi">
-      <img src="img/yoi_cheer.png" alt="" width="56" height="56">
-      <div class="bubble"><span class="who">YOI</span>寝るだけ。7時間眠れば全回復する。足りなければ、その分だけの部分回復（睡眠時間÷7時間）。徹夜明けの1時間の昼寝は……まあ、気休めだね。</div>
-    </div>
-  </details>
-  <details>
-    <summary><span class="qn">Q03</span>記録は自動でつく？<span class="chev">▸</span></summary>
-    <div class="a yoi">
-      <img src="img/yoi_pointing.png" alt="" width="56" height="56">
-      <div class="bubble"><span class="who">YOI</span>基本は手動。寝るときに「寝る」、起きたら「起きた」をタップしてね。ヘルスケア連携を許可すると、アプリを開いたタイミングで睡眠データを自動で取り込めるよ。連携は任意で、あとからでも設定できる。記録した睡眠はあとから編集・削除もできるよ。</div>
-    </div>
-  </details>
-  <details>
-    <summary><span class="qn">Q04</span>通知はどんなものが届く？<span class="chev">▸</span></summary>
-    <div class="a yoi">
-      <img src="img/yoi_bell.png" alt="" width="56" height="56">
-      <div class="bubble"><span class="who">YOI</span>夜ふかししてると、夜のうちに警告を送るよ。ちょっとうるさいけど、それが仕事なんだ。朝は結果だけ淡々と。どっちも端末の中で作られるローカル通知で、どこかのサーバーから飛んでくるわけじゃないよ。</div>
-    </div>
-  </details>
-  <details>
-    <summary><span class="qn">Q05</span>就寝シールドとは？<span class="chev">▸</span></summary>
-    <div class="a plain">就寝シールドは、指定した時間帯に選んだアプリの使用を制限する機能です。無料で利用できます。Apple のスクリーンタイムAPI（Family Controls）を使用するため、初回にスクリーンタイムの許可が必要です。選択したアプリは iOS が発行する匿名トークンとして端末内にのみ保存され、開発者がアプリ名を知ることはできません。</div>
-  </details>
-  <details>
-    <summary><span class="qn">Q06</span>無料でどこまで使える？<span class="chev">▸</span></summary>
-    <div class="a plain">寝かせるための機能はすべて無料です。デバフ値の可視化、夜の警告通知と朝の結果通知、週間起床スケジュール、特定日の上書き、就寝シールド、睡眠記録（編集・削除可）、睡眠分析（5軸スコア・ステージタイムライン）、直近7日の日別詳細、30日グラフなどの集計、ホーム画面ウィジェット、ロック画面のライブアクティビティが含まれます。ダーク/ライトモードの切替にも対応しています。広告もありません。</div>
-  </details>
-  <details>
-    <summary><span class="qn">Q07</span>Pro では何ができる？<span class="chev">▸</span></summary>
-    <div class="a plain">¥300 の買い切りで、7日より前の日別詳細の閲覧、前月比較、通知のカスタマイズが解放されます。サブスクリプションではないため、月額や更新はありません。</div>
-  </details>
-  <details>
-    <summary><span class="qn">Q08</span>広告は表示される？<span class="chev">▸</span></summary>
-    <div class="a plain">表示されません。広告SDK・トラッキングSDKは組み込まれていません。</div>
-  </details>
-  <details>
-    <summary><span class="qn">Q09</span>データはどこに保存される？<span class="chev">▸</span></summary>
-    <div class="a plain">すべて端末内にのみ保存されます。バックエンドサーバーはなく、アカウント登録もありません。開発者がユーザーのデータにアクセスする手段はありません。詳細は<a href="https://kizzz9.github.io/debufftimer-privacy-policy/">プライバシーポリシー</a>をご覧ください。</div>
-  </details>
-  <details>
-    <summary><span class="qn">Q10</span>対応環境は？<span class="chev">▸</span></summary>
-    <div class="a plain">iOS 18.0 以降の iPhone に対応しています。</div>
-  </details>
-</section>
-
 <section class="section" id="sleep-data-guide">
   <div class="ihead"><h2>睡眠データの取り方</h2><span class="rule"></span><span class="meta">全 <span class="n">4</span> 項</span></div>
   <p class="sub">DebuffTimer は iPhone の「ヘルスケア」アプリに入っている睡眠の記録を読み取ります。何が記録されるかは、寝るときに Apple Watch を着けるかどうかで変わります。</p>
@@ -440,6 +382,64 @@ footer a:hover { text-decoration: underline; }
     <br><br>
     <span class="note">アプリスイッチャーで DebuffTimer を上にスワイプして終了させると、iOS の決まりで自動取り込みが止まります。<strong>アプリを開けば元どおりです</strong> — 開いた時点でそれまでの記録もまとめて取り込むので、データが欠けることはありませんし、「昨夜の結果」も起床から6時間以内ならそこから改めて届きます。ただ「開かなくても勝手に届く」よさは失われるので、ふだんは終了させずそのままにしておくのがおすすめです。</span>
     </div>
+  </details>
+</section>
+
+<section class="section" id="faq">
+  <div class="ihead"><h2>よくある質問</h2><span class="rule"></span><span class="meta">全 <span class="n">10</span> 問</span></div>
+  <p class="sub">仕組みの説明はヨイが、料金や権限のことは運営が答えます。</p>
+
+  <details>
+    <summary><span class="qn">Q01</span>デバフ値ってなに？<span class="chev">▸</span></summary>
+    <div class="a yoi">
+      <img src="img/yoi_thinking.png" alt="" width="56" height="56">
+      <div class="bubble"><span class="who">YOI</span>起きてる時間を、酔いに換算した数字だよ。0から150。人は17時間起き続けると、血中アルコール0.05%と同じくらい判断が鈍る — Williamson &amp; Feyer（2000）という研究がもとになってる。数字が上がると、ぼくの見た目もだんだん悪くなっていくよ。</div>
+    </div>
+  </details>
+  <details>
+    <summary><span class="qn">Q02</span>デバフ値はどうすれば下がる？<span class="chev">▸</span></summary>
+    <div class="a yoi">
+      <img src="img/yoi_cheer.png" alt="" width="56" height="56">
+      <div class="bubble"><span class="who">YOI</span>寝るだけ。7時間眠れば全回復する。足りなければ、その分だけの部分回復（睡眠時間÷7時間）。徹夜明けの1時間の昼寝は……まあ、気休めだね。</div>
+    </div>
+  </details>
+  <details>
+    <summary><span class="qn">Q03</span>記録は自動でつく？<span class="chev">▸</span></summary>
+    <div class="a yoi">
+      <img src="img/yoi_pointing.png" alt="" width="56" height="56">
+      <div class="bubble"><span class="who">YOI</span>基本は手動。寝るときに「寝る」、起きたら「起きた」をタップしてね。ヘルスケア連携を許可すると、アプリを開いたタイミングで睡眠データを自動で取り込めるよ。連携は任意で、あとからでも設定できる。記録した睡眠はあとから編集・削除もできるよ。</div>
+    </div>
+  </details>
+  <details>
+    <summary><span class="qn">Q04</span>通知はどんなものが届く？<span class="chev">▸</span></summary>
+    <div class="a yoi">
+      <img src="img/yoi_bell.png" alt="" width="56" height="56">
+      <div class="bubble"><span class="who">YOI</span>夜ふかししてると、夜のうちに警告を送るよ。ちょっとうるさいけど、それが仕事なんだ。朝は結果だけ淡々と。どっちも端末の中で作られるローカル通知で、どこかのサーバーから飛んでくるわけじゃないよ。</div>
+    </div>
+  </details>
+  <details>
+    <summary><span class="qn">Q05</span>就寝シールドとは？<span class="chev">▸</span></summary>
+    <div class="a plain">就寝シールドは、指定した時間帯に選んだアプリの使用を制限する機能です。無料で利用できます。Apple のスクリーンタイムAPI（Family Controls）を使用するため、初回にスクリーンタイムの許可が必要です。選択したアプリは iOS が発行する匿名トークンとして端末内にのみ保存され、開発者がアプリ名を知ることはできません。</div>
+  </details>
+  <details>
+    <summary><span class="qn">Q06</span>無料でどこまで使える？<span class="chev">▸</span></summary>
+    <div class="a plain">寝かせるための機能はすべて無料です。デバフ値の可視化、夜の警告通知と朝の結果通知、週間起床スケジュール、特定日の上書き、就寝シールド、睡眠記録（編集・削除可）、睡眠分析（5軸スコア・ステージタイムライン）、直近7日の日別詳細、30日グラフなどの集計、ホーム画面ウィジェット、ロック画面のライブアクティビティが含まれます。ダーク/ライトモードの切替にも対応しています。広告もありません。</div>
+  </details>
+  <details>
+    <summary><span class="qn">Q07</span>Pro では何ができる？<span class="chev">▸</span></summary>
+    <div class="a plain">¥300 の買い切りで、7日より前の日別詳細の閲覧、前月比較、通知のカスタマイズが解放されます。サブスクリプションではないため、月額や更新はありません。</div>
+  </details>
+  <details>
+    <summary><span class="qn">Q08</span>広告は表示される？<span class="chev">▸</span></summary>
+    <div class="a plain">表示されません。広告SDK・トラッキングSDKは組み込まれていません。</div>
+  </details>
+  <details>
+    <summary><span class="qn">Q09</span>データはどこに保存される？<span class="chev">▸</span></summary>
+    <div class="a plain">すべて端末内にのみ保存されます。バックエンドサーバーはなく、アカウント登録もありません。開発者がユーザーのデータにアクセスする手段はありません。詳細は<a href="https://kizzz9.github.io/debufftimer-privacy-policy/">プライバシーポリシー</a>をご覧ください。</div>
+  </details>
+  <details>
+    <summary><span class="qn">Q10</span>対応環境は？<span class="chev">▸</span></summary>
+    <div class="a plain">iOS 18.0 以降の iPhone に対応しています。</div>
   </details>
 </section>
 
